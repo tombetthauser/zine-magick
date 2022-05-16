@@ -8,7 +8,7 @@ A collection of imagemagick commands and scripts that I've found, modified and d
 
 ## Make a Blank Print File
 
-This is for making a starter print file that you can overlay other images onto. The pixel counts are fairly standard for good and excellent resolution.
+These are for making a starter 8.5 x 11 inch print file for a standard home printer that you can overlay other images onto. The argument given to the -size option are pixel counts and are set at fairly standard dimensions for good and excellent print resolution.
 
 ```bash
   # decent resolution / vertical orientation
