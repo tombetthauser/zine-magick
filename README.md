@@ -87,7 +87,6 @@ This one's pretty straight-forward but centering the overlayed image versus givi
   
   # this will overlay image1.jpg on top of image2.jpg along the left edge 150 pixels down and output image3.jpg
   magick composite -compose atop -geometry +0+150 image1.jpg image2.jpg image3.jpg
-  
 
   # this will overlay image1.jpg on top of image2.jpg 150 pixels down and 100 pixels to the right of the top left corner
   magick composite -compose atop -geometry +100+150 image1.jpg image2.jpg image3.jpg
