@@ -6,7 +6,7 @@ A collection of imagemagick commands and scripts ***mainly for weird art project
 
 ---
 
-## Make a Blank Print File
+## Make a Blank Print File 📄
 
 These are for making a starter 8.5 x 11 inch print file for a standard home printer that you can overlay other images onto. The argument given to the -size option are pixel counts and are set at fairly standard dimensions for good and excellent print resolution.
 
@@ -26,7 +26,7 @@ These are for making a starter 8.5 x 11 inch print file for a standard home prin
 
 ---
 
-## Rotate an Image
+## Rotate an Image ♻️
 
 This ones obvious but the argument number after -rotate is in degrees. Note that the output file sometimes may have to be different than the input file, maybe with certain filetypes. Couldn't reproduce the error so for now in place rotations seem fine. Also note that if images are rotated at non-right angles white space will be created in corners, seemingly even if the output is a png.
 
@@ -43,7 +43,7 @@ This ones obvious but the argument number after -rotate is in degrees. Note that
 
 ---
 
-## Resize an Image
+## Resize an Image 🗜
 
 This ones also obvious but its worth noting a couple things. If the bang ("!") is not present the resized image will ***fit inside*** the desired dimensions, meaning one of the two dimensions will be resized to fit one of the new dimensions and the other dimension will maintain the original aspect ratio. To force the image into the new aspect ration add a bang ("!").
 
@@ -60,7 +60,7 @@ This ones also obvious but its worth noting a couple things. If the bang ("!") i
 
 ---
 
-## Resize and Crop or Contain
+## Resize and Crop or Contain ✂️
 
 This one is more niche, I'm using it to process user input images of varying aspect ratios and sizes to fit into printable zine pages. The user is given the option to crop or contain their images into the print space but the centering and adding of whitespace is critical to automate properly placing them in a larger multi-page print file.
 
@@ -74,7 +74,7 @@ This one is more niche, I'm using it to process user input images of varying asp
 
 ---
 
-## Combining Images
+## Combining Images 👥
 
 This one's pretty straight-forward but centering the overlayed image versus giving it a specific location is pretty important if your doing anything more complex.
 
