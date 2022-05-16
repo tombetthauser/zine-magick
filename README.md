@@ -52,5 +52,22 @@ This ones also obvious but its worth noting a couple things. If the bang ("!") i
   convert image.jpg -resize 100x100 image.jpg
   
   # force image to MATCH desired pixel dimensions / may distort image to match desired aspect ratio
-  convert image.jpg -resize 100x100 image.jpg
+  convert image.jpg -resize 100x100! image.jpg
+  
+  # force image to FILL desired pixel dimensions / may be larger than desired / retains original aspect ratio
+  convert image.jpg -resize 100x100^ image.jpg
+```
+
+---
+
+## Resize and Crop or Contain
+
+This one is more niche, I'm using it to process user input images of varying aspect ratios and sizes to fit into printable zine pages. The user is given the option to crop or contain their images into the print space but the centering and adding of whitespace is critical to automate properly placing them in a larger multi-page print file.
+
+```bash
+  # this resizes the image to fit INSIDE the desired dimensions retaining the original aspect ratio and adding white space,  outputting a centered version of the image with desired dimensions
+  convert image.jpg -resize 100x100 image2.jpeg -extent 100x100 image.jpg
+  
+  # this forces image to FILL the desired dimensions retaining the original aspect ratio and cropping a centered version of the image with the desired dimensions
+  convert image.jpg -resize 100x100^ -gravity center -extent 100x100 image.jpg
 ```
