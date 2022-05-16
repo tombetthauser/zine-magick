@@ -36,5 +36,5 @@ This ones obvious but the argument number after -rotate is in degrees. Note that
   convert image.jpg -rotate 180 image.jpg
   
   # rotate 45 degrees clockwise / creates whitespace in corners
-  convert image.jpg -rotate 180 image.jpg
+  convert image.jpg -rotate 45 image.jpg
 ```
