@@ -91,6 +91,9 @@ This one's pretty straight-forward but centering the overlayed image versus givi
   # this will overlay image1.jpg on top of image2.jpg 150 pixels down and 100 pixels to the right of the top left corner
   magick composite -compose atop -geometry +100+150 image1.jpg image2.jpg image3.jpg
   
+  # this will add cumulatively by overlaying image1.jpg on top of image2.jpg and overriding the old image2.jpg
+  magick composite -geometry +100+200 image1.jpeg image2.jpg image2.jpg
+  
   # ~~~~~~~~~~~~~~~~~~~~~~~~~
 
   # just a side-note, this is insane but imagemagick has some buit in images like "rose" in this example
