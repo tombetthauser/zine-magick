@@ -99,3 +99,35 @@ This one's pretty straight-forward but centering the overlayed image versus givi
   # just a side-note, this is insane but imagemagick has some buit in images like "rose" in this example
   magick composite -gravity center image2.jpeg rose: rose-over.jpeg
 ```
+
+## Coming Soon
+* Creating Half-Page Zine
+  - single page
+  - from image set
+* Creating Quarter-Page Zine
+  - single page
+  - from image set
+* Creating Eighth-Page Zine
+  - single page
+  - from image set
+* Creating Double-Size Zine
+  - single page
+  - from image set
+* Creating Quadruple-Size Zine
+  - single page
+  - from image set
+* Creating ~4-Foot Zine
+  - single page
+  - from image set
+* Adding Text
+  - position
+  - size
+  - background
+  - borders
+  - box shadows
+  - test shadows
+* Jumbling Images
+  - randomly place image
+  - place random image
+  - randomly place set of images
+  - randomly place random images so many times
