@@ -23,3 +23,15 @@ These are for making a starter 8.5 x 11 inch print file for a standard home prin
   # excellent resolution / horizontal orientation
   convert -size 4400x3400 xc:white empty.png
 ```
+
+## Rotate an Image
+
+This ones obvious but the argument number after -rotate is in degrees. Note that the output file sometimes may have to be different than the input file, maybe with certain filetypes. Couldn't reproduce the error so for now in place rotations seem fine. Also note that if images are rotated at non-right angles white space will be created in corners, seemingly even if the output is a png.
+
+```bash
+  # rotate 90 degrees clockwise
+  convert image.jpg -rotate 90 image.jpg
+  
+  # rotate 180 degrees clockwise
+  convert image.jpg -rotate 180 image.jpg
+```
