@@ -60,7 +60,7 @@ This ones also obvious but its worth noting a couple things. If the bang ("!") i
 
 ---
 
-## Resize and Crop or Contain ✂️
+## Crop or Contain an Image ✂️
 
 This one is more niche, I'm using it to process user input images of varying aspect ratios and sizes to fit into printable zine pages. The user is given the option to crop or contain their images into the print space but the centering and adding of whitespace is critical to automate properly placing them in a larger multi-page print file.
 
