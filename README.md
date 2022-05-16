@@ -71,3 +71,29 @@ This one is more niche, I'm using it to process user input images of varying asp
   # this forces image to FILL the desired dimensions retaining the original aspect ratio and cropping a centered version of the image with the desired dimensions
   convert image.jpg -resize 100x100^ -gravity center -extent 100x100 image.jpg
 ```
+
+---
+
+## Combining Images
+
+This one's pretty straight-forward but centering the overlayed image versus giving it a specific location is pretty important if your doing anything more complex.
+
+```bash
+  # this will overlay image1.jpg on top of image2.jpg right in the center and output image3.jpg
+  magick composite -gravity center image1.jpg image2.jpg image3.jpg
+  
+  # this will overlay image1.jpg on top of image2.jpg at the top left corner and output image3.jpg
+  magick composite -compose atop -geometry +0+0 image1.jpg image2.jpg image3.jpg
+  
+  # this will overlay image1.jpg on top of image2.jpg along the left edge 150 pixels down and output image3.jpg
+  magick composite -compose atop -geometry +0+150 image1.jpg image2.jpg image3.jpg
+  
+
+  # this will overlay image1.jpg on top of image2.jpg 150 pixels down and 100 pixels to the right of the top left corner
+  magick composite -compose atop -geometry +100+150 image1.jpg image2.jpg image3.jpg
+  
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  # just a side-note, this is insane but imagemagick has some buit in images like "rose" in this example
+  magick composite -gravity center image2.jpeg rose: rose-over.jpeg
+```
