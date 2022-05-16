@@ -24,6 +24,8 @@ These are for making a starter 8.5 x 11 inch print file for a standard home prin
   convert -size 4400x3400 xc:white empty.png
 ```
 
+---
+
 ## Rotate an Image
 
 This ones obvious but the argument number after -rotate is in degrees. Note that the output file sometimes may have to be different than the input file, maybe with certain filetypes. Couldn't reproduce the error so for now in place rotations seem fine. Also note that if images are rotated at non-right angles white space will be created in corners, seemingly even if the output is a png.
@@ -37,4 +39,18 @@ This ones obvious but the argument number after -rotate is in degrees. Note that
   
   # rotate 45 degrees clockwise / creates whitespace in corners
   convert image.jpg -rotate 45 image.jpg
+```
+
+---
+
+## Resize an Image
+
+This ones also obvious but its worth noting a couple things. If the bang ("!") is not present the resized image will ***fit inside*** the desired dimensions, meaning one of the two dimensions will be resized to fit one of the new dimensions and the other dimension will maintain the original aspect ratio. To force the image into the new aspect ration add a bang ("!").
+
+```bash
+  # force image to fit INSIDE desired pixel dimensions / retains original aspect ration
+  convert image.jpg -resize 100x100 image.jpg
+  
+  # force image to MATCH desired pixel dimensions / may distort image to match desired aspect ratio
+  convert image.jpg -resize 100x100 image.jpg
 ```
