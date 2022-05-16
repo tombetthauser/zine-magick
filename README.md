@@ -6,7 +6,7 @@ A collection of imagemagick commands and scripts that I've found, modified and d
 
 ---
 
-## Blank Print File
+## Make a Blank Print File
 
 This is for making a starter print file that you can overlay other images onto. The pixel counts are fairly standard for good and excellent resolution.
 
