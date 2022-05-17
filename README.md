@@ -114,9 +114,7 @@ This is a bash script not image magick but it's useful for using image magick to
   done
 ```
 
-## Size and Position Arrays
-
-### Half-Page Portrait Zine
+## Make a Half-Page Portrait Zine 🦘
 
 All sizes in pixels, all rotations in degrees.
 
