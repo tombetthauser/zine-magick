@@ -100,7 +100,7 @@ This one's pretty straight-forward but centering the overlayed image versus givi
   magick composite -gravity center image2.jpeg rose: rose-over.jpeg
 ```
 
-## Get Images in Directory
+## Get Images in Directory 🔍
 
 This is a bash script not image magick but it's useful for using image magick to do dynamic stuff to a batch of images. Basically it just stores all file names in an bash array and then iterates through them and lets you do whatever you want with each one.
 
@@ -112,6 +112,68 @@ This is a bash script not image magick but it's useful for using image magick to
       # insert image magick here
       echo "${arr[$i]}"
   done
+```
+
+## Print Location Dictionary
+
+```json
+  {
+    "instructions": "Take every input page number and modulo by 4. Take the remainder and run through the lookup table. Then add the value from the lookup table to the original input page number devided by 4 and floored, indicating the print page number. That should produce the correct new order number to be placed on the print page files."
+    "half-page-zine": {
+      "print-sheet-capacity": 4,
+      "1": {
+        "offset": 4,
+        "rotate": 270
+      },
+      "2": {
+        "offset": 1,
+        "rotate": 270
+      },
+      "3": {
+        "offset": 2,
+        "rotate": 270
+      },
+      "4": {
+        "offset": 3,
+        "rotate": 270
+      }
+    },
+    "quarter-page-zine": {
+      "print-sheet-capacity": 8,
+      "1": {
+        "offset": 2,
+        "rotate": 0
+      },
+      "2": {
+        "offset": 5,
+        "rotate": 0
+      },
+      "3": {
+        "offset": 7,
+        "rotate": 180
+      },
+      "4": {
+        "offset": 4,
+        "rotate": 180
+      },
+      "5": {
+        "offset": 3,
+        "rotate": 180
+      },
+      "6": {
+        "offset": 8,
+        "rotate": 180
+      },
+      "7": {
+        "offset": 6,
+        "rotate": 0
+      },
+      "8": {
+        "offset": 1,
+        "rotate": 0
+      }
+    }
+  }
 ```
 
 ## Coming Soon
