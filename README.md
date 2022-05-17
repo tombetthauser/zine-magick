@@ -114,69 +114,141 @@ This is a bash script not image magick but it's useful for using image magick to
   done
 ```
 
-## Print Location Dictionary
+## Size and Position Arrays
+
+### Half-Page Portrait Zine
+
+All sizes in pixels, all rotations in degrees.
+
+```bash
+  zineImageFileNames=(~/images-folder/*)
+  zineImageCount=${#zineImageFileNames[@]}
+
+  xPageSizeMedium=2550
+  yPageSizeMedium=3300
+  
+  xPageSizeLarge=3400
+  yPageSizeLarge=4400
+  
+  printPageCount=$((zineImageCount/2))
+  # make all blank pages in new directory named off order number
+ 
+  rotations=(270 90 90 270)
+  # rotate all images in place
+ 
+  xImageSize=97.06
+  yImageSize=47.73
+  # calculate these percentages into pixels
+  # note that bash only uses integers so perform calculation manually before running script
+  # resize all images in place
+  # this has to happen after rotation right now but this should be changed
+  
+  relativePageOrders=(4 1 2 3)
+  # copy and rename all image files correctly based on offsets in new directory
+  
+  xCoordinates=(1.47 1.47)
+  yCoordinates=(1.14 51.14)
+  # calculate these percentages into pixels
+  # again bash can only use integers so calculate manually before running script
+  
+  # iterate through all new correctly ordered images
+  # place on blank page files replacing page file each time
+```
+
+
+<!-- ## Print Location Dictionary
 
 ```json
   {
     "instructions": "Take every input page number and modulo by 4. Take the remainder and run through the lookup table. Then add the value from the lookup table to the original input page number devided by 4 and floored, indicating the print page number. That should produce the correct new order number to be placed on the print page files."
     "half-page-zine": {
-      "print-sheet-capacity": 4,
-      "1": {
-        "offset": 4,
-        "rotate": 270
-      },
-      "2": {
-        "offset": 1,
-        "rotate": 270
-      },
-      "3": {
-        "offset": 2,
-        "rotate": 270
-      },
-      "4": {
-        "offset": 3,
-        "rotate": 270
-      }
+      "print-sheet-capacity-both-sides": 4,
+        "page-ordering-offsets": {
+         "1": {
+          "offset": 4,
+          "rotate": 270
+        },
+        "2": {
+          "offset": 1,
+          "rotate": 90
+        },
+        "3": {
+          "offset": 2,
+          "rotate": 90
+        },
+        "4": {
+          "offset": 3,
+          "rotate": 270
+        },
+        "position-offsets-percentages": {
+          "portrait-orientation":
+            "image-width": 97.06,
+            "image-height": 47.73,
+            "image-1-position": {
+              "x": 1.47,
+              "y": 1.14
+            },
+            "image-2-postiion": {
+              "x": 1.47,
+              "y": 51.14
+            }
+        }
+      } 
     },
     "quarter-page-zine": {
-      "print-sheet-capacity": 8,
-      "1": {
-        "offset": 2,
-        "rotate": 0
-      },
-      "2": {
-        "offset": 5,
-        "rotate": 0
-      },
-      "3": {
-        "offset": 7,
-        "rotate": 180
-      },
-      "4": {
-        "offset": 4,
-        "rotate": 180
-      },
-      "5": {
-        "offset": 3,
-        "rotate": 180
-      },
-      "6": {
-        "offset": 8,
-        "rotate": 180
-      },
-      "7": {
-        "offset": 6,
-        "rotate": 0
-      },
-      "8": {
-        "offset": 1,
-        "rotate": 0
+      "print-sheet-capacity-both-sides": 8,
+      "page-ordering-offsets": {
+        "1": {
+          "offset": 2,
+          "rotate": 0
+        },
+        "2": {
+          "offset": 5,
+          "rotate": 0
+        },
+        "3": {
+          "offset": 7,
+          "rotate": 180
+        },
+        "4": {
+          "offset": 4,
+          "rotate": 180
+        },
+        "5": {
+          "offset": 3,
+          "rotate": 180
+        },
+        "6": {
+          "offset": 8,
+          "rotate": 180
+        },
+        "7": {
+          "offset": 6,
+          "rotate": 0
+        },
+        "8": {
+          "offset": 1,
+          "rotate": 0
+        },
+        "position-offsets-percentages": {
+          "portrait-orientation":
+            "image-width": 97.06,
+            "image-height": 47.73,
+            "image-1-position": {
+              "x": 1.47,
+              "y": 1.14
+            },
+            "image-2-postiion": {
+              "x": 1.47,
+              "y": 51.14
+            }
+        }
       }
     }
   }
-```
+``` -->
 
-## Coming Soon
+<!-- ## Coming Soon
 * Creating Half-Page Zine
   - single page
   - from image set
@@ -206,4 +278,4 @@ This is a bash script not image magick but it's useful for using image magick to
   - randomly place image
   - place random image
   - randomly place set of images
-  - randomly place random images so many times
+  - randomly place random images so many times -->
