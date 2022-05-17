@@ -100,6 +100,20 @@ This one's pretty straight-forward but centering the overlayed image versus givi
   magick composite -gravity center image2.jpeg rose: rose-over.jpeg
 ```
 
+## Get Images in Directory
+
+This is a bash script not image magick but it's useful for using image magick to do dynamic stuff to a batch of images. Basically it just stores all file names in an bash array and then iterates through them and lets you do whatever you want with each one.
+
+```bash
+  arr=(~/images-folder/*)
+
+  # iterate through array using a counter
+  for ((i=0; i<${#arr[@]}; i++)); do
+      # insert image magick here
+      echo "${arr[$i]}"
+  done
+```
+
 ## Coming Soon
 * Creating Half-Page Zine
   - single page
