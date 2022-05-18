@@ -343,7 +343,8 @@ All sizes in pixels, all rotations in degrees.
 
 
   # ~~~~~~~~~~ COMBINE INTO SINGLE PDF ~~~~~~~~~~~~~~~~~~~~
-  # add this later should be simple
+  currentTime=`date -u +%s`
+  magick convert ./zine-pages/* zine-${currentTime}.pdf
 ```
 
 
