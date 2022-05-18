@@ -119,30 +119,80 @@ This is a bash script not image magick but it's useful for using image magick to
 All sizes in pixels, all rotations in degrees.
 
 ```bash
-  zineImageFileNames=(~/images-folder/*)
+  # temporary zine images reset
+  rm -rf zine-images
+  cp -r zine-images-originals zine-images
+
+  zineImageFileNames=(./zine-images/*)
   zineImageCount=${#zineImageFileNames[@]}
+
+  pageMax=2
+  sheetMax=4
+
+  # this is just a manual way 
+  pagesNeeded=$(( ( zineImageCount / pageMax ) + ( zineImageCount % pageMax > 0 ) ))
 
   xPageSizeMedium=2550
   yPageSizeMedium=3300
-  
+
   xPageSizeLarge=3400
   yPageSizeLarge=4400
-  
+
   printPageCount=$((zineImageCount/2))
-  # make all blank pages in new directory named off order number
- 
-  rotations=(270 90 90 270)
+
+  # delete zine pages folder if it exists and remake it
+  rm -rf zine-pages
+  mkdir zine-pages
+
+  # make starter blank page to copy
+  convert -size ${xPageSizeLarge}x${yPageSizeLarge} xc:white zine-pages/1-page.png
+
+  # make all blank pages in new directory named off order number by copying first one
+  # this is just faster than making each page with convert
+  for ((i=1; i<${pagesNeeded}; i++)); do
+    cp zine-pages/1-page.png zine-pages/$(($i+1))-page.png
+  done
+
   # rotate all images in place
- 
-  xImageSize=97.06
-  yImageSize=47.73
-  # calculate these percentages into pixels
+  rotations=(270 90 90 270)
+  rotationsLength=${#rotations[@]}
+
+  for ((i=0; i<$((zineImageCount)); i++)); do
+    rotation=${rotations[$((i % rotationsLength))]}
+    zineImage=${zineImageFileNames[$((i))]}
+    convert $zineImage -rotate $rotation $zineImage
+  done
+
+  # image sizes are percentages of total page height / width accounting for 1/8th inch border gaps
+  xImagePercent=9706 # represents 97.06%
+  yImagePercent=4773 # represents 47.73%
+
+  # calculate percentages into pixels
+  xImagePixels=$(((xImagePercent * xPageSizeLarge) / 10000))
+  yImagePixels=$(((yImagePercent * yPageSizeLarge) / 10000))
+
   # note that bash only uses integers so perform calculation manually before running script
   # resize all images in place
   # this has to happen after rotation right now but this should be changed
-  
+  for ((i=0; i<$((zineImageCount)); i++)); do
+    zineImage=${zineImageFileNames[$((i))]}
+    convert $zineImage -resize $((xImagePixels))x$((yImagePixels))^ -gravity center -extent $((xImagePixels))x$((yImagePixels)) $zineImage
+  done
+
+  # TESTED AND WORKS UP THROUGH HERE ~~~~~~~~~~~~~~~~~~~~
+
+
   relativePageOrders=(4 1 2 3)
-  # copy and rename all image files correctly based on offsets in new directory
+  relativePageOrdersLength=${#relativePageOrders[@]}
+
+  # rename all zine image files for correct order ie -> 2-ordered.png
+  for ((i=0; i<$((zineImageCount)); i++)); do
+    zineImage=${zineImageFileNames[$((i))]}
+    relativeOrder=${relativePageOrders[$((i % relativePageOrdersLength))]}
+    pageNumber=$(((i / 4))) # first page is zero since divide will always round down
+    absoluteOrder=$(((pageNumber * 4) + relativeOrder))
+    mv $zineImage $((absoluteOrder))-ordered-$((zineImage))
+  done
   
   xCoordinates=(1.47 1.47)
   yCoordinates=(1.14 51.14)
