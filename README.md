@@ -4,9 +4,19 @@ A collection of imagemagick commands and scripts ***mainly for weird art project
 
 ![magick](https://bestanimations.com/Careers/Entertainment/Magic/magician-animation-10.gif)
 
+1. [Make a Blank Print File](#make-a-blank-print-file)
+2. [Rotate an Image](#rotate-an-image)
+3. [Resize an Image](#resize-an-image)
+4. [Crop or Contain an Image](#crop-or-contain-an-image)
+5. [Combining Images](#combining-images)
+6. [Get Images in Directory](#get-images-in-directory)
+7. [Make a Half-Page Vertical Zine](#make-a-half-page-vertical-zine)
+8. [Make a Quarter-Page Vertical Zine](#make-a-quarter-page-vertical-zine)
+
+
 ---
 
-## Make a Blank Print File 📄
+## Make a Blank Print File
 
 These are for making a starter 8.5 x 11 inch print file for a standard home printer that you can overlay other images onto. The argument given to the -size option are pixel counts and are set at fairly standard dimensions for good and excellent print resolution.
 
@@ -26,7 +36,7 @@ These are for making a starter 8.5 x 11 inch print file for a standard home prin
 
 ---
 
-## Rotate an Image ♻️
+## Rotate an Image
 
 This ones obvious but the argument number after -rotate is in degrees. Note that the output file sometimes may have to be different than the input file, maybe with certain filetypes. Couldn't reproduce the error so for now in place rotations seem fine. Also note that if images are rotated at non-right angles white space will be created in corners, seemingly even if the output is a png.
 
@@ -43,7 +53,7 @@ This ones obvious but the argument number after -rotate is in degrees. Note that
 
 ---
 
-## Resize an Image 🗜
+## Resize an Image
 
 This ones also obvious but its worth noting a couple things. If the bang ("!") is not present the resized image will ***fit inside*** the desired dimensions, meaning one of the two dimensions will be resized to fit one of the new dimensions and the other dimension will maintain the original aspect ratio. To force the image into the new aspect ration add a bang ("!").
 
@@ -60,7 +70,7 @@ This ones also obvious but its worth noting a couple things. If the bang ("!") i
 
 ---
 
-## Crop or Contain an Image ✂️
+## Crop or Contain an Image
 
 This one is more niche, I'm using it to process user input images of varying aspect ratios and sizes to fit into printable zine pages. The user is given the option to crop or contain their images into the print space but the centering and adding of whitespace is critical to automate properly placing them in a larger multi-page print file.
 
@@ -74,7 +84,7 @@ This one is more niche, I'm using it to process user input images of varying asp
 
 ---
 
-## Combining Images 👥
+## Combining Images
 
 This one's pretty straight-forward but centering the overlayed image versus giving it a specific location is pretty important if your doing anything more complex.
 
@@ -100,7 +110,7 @@ This one's pretty straight-forward but centering the overlayed image versus givi
   magick composite -gravity center image2.jpeg rose: rose-over.jpeg
 ```
 
-## Get Images in Directory 🔍
+## Get Images in Directory
 
 This is a bash script not image magick but it's useful for using image magick to do dynamic stuff to a batch of images. Basically it just stores all file names in an bash array and then iterates through them and lets you do whatever you want with each one.
 
@@ -116,9 +126,15 @@ This is a bash script not image magick but it's useful for using image magick to
 
 ---
 
-# Make a Half-Page Vertical Zine 🐕
+# Make a Half-Page Vertical Zine
 
-All sizes in pixels, all rotations in degrees.
+This script will process a folder of images with mixed aspect ratios and resolutions into a printable zine pdf. The pages will print out in the proper order and with the proper rotations to be printed out on 8.5 x 11 inch paper on a standard home or office printer and bound with the simplest possible side-stapling approach. This means each individual sheet will be folded, then stacked side-by-side rather than clam-shelled / nested together, and then stapled along the binding with the zine closed. They can also be bound with a japanese / sewn binding approach. This also will result in no creeping edge and therefore will not require a stack cutter or manual trim.
+
+* vertical / portrait orientation
+* 4.25 x 5.5 inch zine
+* 8.5 x 11 inch print paper
+* home or office printer friendly
+* 64 pages max (32 sheets)
 
 ```bash
   # ~~~~~~~~~~ GENERAL SETUP ~~~~~~~~~~~~~~~~~~~~
@@ -351,7 +367,7 @@ All sizes in pixels, all rotations in degrees.
 
 ---
 
-# Make a Quarter-Page Vertical Zine 🐈
+# Make a Quarter-Page Vertical Zine
 
 ```bash
   # ~~~~~~~~~~ GENERAL SETUP ~~~~~~~~~~~~~~~~~~~~
