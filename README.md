@@ -119,42 +119,81 @@ This is a bash script not image magick but it's useful for using image magick to
 All sizes in pixels, all rotations in degrees.
 
 ```bash
-  # temporary zine images reset
+  # ~~~~~~~~~~ GENERAL SETUP ~~~~~~~~~~~~~~~~~~~~
+
+  # first we delete and recreate our zine images directory
+  # we copy all of our original input images into this directory to manipulate
   rm -rf zine-images
   cp -r zine-images-originals zine-images
 
-  zineImageFileNames=(./zine-images/*)
-  zineImageCount=${#zineImageFileNames[@]}
-
-  pageMax=2
-  sheetMax=4
-
-  # this is just a manual way 
-  pagesNeeded=$(( ( zineImageCount / pageMax ) + ( zineImageCount % pageMax > 0 ) ))
-
-  xPageSizeMedium=2550
-  yPageSizeMedium=3300
-
-  xPageSizeLarge=3400
-  yPageSizeLarge=4400
-
-  printPageCount=$((zineImageCount/2))
-
-  # delete zine pages folder if it exists and remake it
+  # also delete the zine pages folder if it exists and remake it empty
   rm -rf zine-pages
   mkdir zine-pages
 
-  # make starter blank page to copy
-  convert -size ${xPageSizeLarge}x${yPageSizeLarge} xc:white zine-pages/1-page.png
+  # then we capture all the filenames in an array
+  # we grab the length for reference also since thats a pain in bash
+  zineImageFileNames=(./zine-images/*)
+  zineImageCount=${#zineImageFileNames[@]}
 
-  # make all blank pages in new directory named off order number by copying first one
+  # now we set the max number of images per page
+  # we also set the maximum number of image that can be on a sheet which could be calculated too
+  pageMax=2
+  sheetMax=4
+
+  # now we calculate the number of pages we'll need
+  # this may need to be adjusted for larger zine counts and should be tested
+  # it divides the total number of images for the zine by how many can fit on the page rounding down
+  # then it adds another tow pages (one double-sided print sheet) if there were any leftover pages
+  # its good this is here but it really shouldnt be used
+  # zine page counts should be adjusted to fit evenly onto desired print layout without blank end pages
+  pagesNeeded=$(((zineImageCount / pageMax)+((zineImageCount % pageMax > 0 ) * 2)))
+
+  # below are the pixel dimensions for page files which represent resolution
+  # these will determine how pixellated or compressed any styling done later on is
+  # comment them in and out freely to experiment
+
+  # xPageSizePixels=3400
+  # yPageSizePixels=4400
+
+  # xPageSizePixels=1700
+  # yPageSizePixels=2200
+
+  # xPageSizePixels=850
+  # yPageSizePixels=1100
+
+  xPageSizePixels=425
+  yPageSizePixels=550
+
+  # xPageSizePixels=217
+  # yPageSizePixels=275
+
+
+
+
+  # ~~~~~~~~~~ CREATE BLANK PAGES ~~~~~~~~~~~~~~~~~~~~
+
+  # this approach makes blank pages first to overlay the images onto later
+  # making the blank page files doesn't need to happen first but might as well
+  # first it makes a single starter blank page to copy which speed things up
+  convert -size ${xPageSizePixels}x${yPageSizePixels} xc:white zine-pages/1-page.png
+
+  # then it makes all blank pages in new directory
   # this is just faster than making each page with convert
   for ((i=1; i<${pagesNeeded}; i++)); do
     cp zine-pages/1-page.png zine-pages/$(($i+1))-page.png
   done
 
-  # rotate all images in place
-  rotations=(270 90 90 270)
+
+
+
+  # ~~~~~~~~~~ ROTATE IMAGE FILES ~~~~~~~~~~~~~~~~~~~~
+
+  # this uses a rotation pattern array with numbers representing clockwise degrees
+  # it can be referenced dynamically for any page number with some modulus arithmatic
+  # the pattern here is tricky since it needs to be applied before reordering the images for page placement
+  # this is best calculated manually with a physical mock-up of the zine size
+
+  rotations=(270 90 90 270) # <--- set these manually for different zine layouts
   rotationsLength=${#rotations[@]}
 
   for ((i=0; i<$((zineImageCount)); i++)); do
@@ -163,44 +202,148 @@ All sizes in pixels, all rotations in degrees.
     convert $zineImage -rotate $rotation $zineImage
   done
 
+
+
+
+  # ~~~~~~~~~~ CALCULATE IMAGE POSITION COORDINATES ~~~~~~~~~~~~~~~~~~~~
+
+  # this determines the desired individual image size 
+  # this will allow us so simply place it on the page files by coordinate
+  # these could be calculated dynamically but can be determined manually
+  # its easier to do with a physical mockup
+  # percentages were determined by measuring in 1/8th inch units
+  # could also have been done with millimeters
   # image sizes are percentages of total page height / width accounting for 1/8th inch border gaps
-  xImagePercent=9706 # represents 97.06%
-  yImagePercent=4773 # represents 47.73%
+  # the border gaps are to match the 1/8th inch unprited white boarder on most home printers
+
+  xImagePercent=9706 # represents 97.06% <-- set this manually for different zine layouts
+  yImagePercent=4773 # represents 47.73% <-- set this manually for different zine layouts
 
   # calculate percentages into pixels
-  xImagePixels=$(((xImagePercent * xPageSizeLarge) / 10000))
-  yImagePixels=$(((yImagePercent * yPageSizeLarge) / 10000))
-
+  xImageSizePixels=$(((xImagePercent * xPageSizePixels) / 10000)) # <-- division simulates percentage
+  yImageSizePixels=$(((yImagePercent * yPageSizePixels) / 10000))
   # note that bash only uses integers so perform calculation manually before running script
-  # resize all images in place
-  # this has to happen after rotation right now but this should be changed
+
+  # this resizes all images in place
+  # this has to happen after rotation right now but should be changed for efficiency later
   for ((i=0; i<$((zineImageCount)); i++)); do
     zineImage=${zineImageFileNames[$((i))]}
-    convert $zineImage -resize $((xImagePixels))x$((yImagePixels))^ -gravity center -extent $((xImagePixels))x$((yImagePixels)) $zineImage
+    convert $zineImage -resize $((xImageSizePixels))x$((yImageSizePixels))^ -gravity center -extent $((xImageSizePixels))x$((yImageSizePixels)) $zineImage
   done
 
-  # TESTED AND WORKS UP THROUGH HERE ~~~~~~~~~~~~~~~~~~~~
 
 
-  relativePageOrders=(4 1 2 3)
+
+  # ~~~~~~~~~~ CALCULATE IMAGE ORDER FOR PAGES ~~~~~~~~~~~~~~~~~~~~
+
+  # this renames the pages based on the order they should be added to the pages
+  # this gets more complicated the smaller the zine gets
+  # its best figured out with a physical mockup of the zine size
+  # this array can give us the correct relative orders for any image count with some modulus arithmatic
+  # the first image for a page will get reordered to the number at index 0 in the array
+  # the second will be assigned the relative order number at index 1 and so on
+  # the pattern repeats for every print sheet meaning front and back
+
+  relativePageOrders=(1 3 4 2) # <--- set these manually for different zine layouts
   relativePageOrdersLength=${#relativePageOrders[@]}
 
-  # rename all zine image files for correct order ie -> 2-ordered.png
+  # rename all zine image files for correct order
   for ((i=0; i<$((zineImageCount)); i++)); do
     zineImage=${zineImageFileNames[$((i))]}
     relativeOrder=${relativePageOrders[$((i % relativePageOrdersLength))]}
-    pageNumber=$(((i / 4))) # first page is zero since divide will always round down
+    pageNumber=$((((i) / 4))) # <-- first page is zero since divide will always round down
     absoluteOrder=$(((pageNumber * 4) + relativeOrder))
-    mv $zineImage $((absoluteOrder))-ordered-$((zineImage))
+
+    # use some horrible bash syntax to separate the filetype for renaming
+    extension="${zineImage##*.}"
+    newFileName=./zine-images/$((absoluteOrder))-ordered.$extension
+    mv $zineImage ./zine-images/$((absoluteOrder))-ordered.$extension
   done
-  
-  xCoordinates=(1.47 1.47)
-  yCoordinates=(1.14 51.14)
-  # calculate these percentages into pixels
-  # again bash can only use integers so calculate manually before running script
-  
-  # iterate through all new correctly ordered images
-  # place on blank page files replacing page file each time
+
+
+
+
+  # ~~~~~~~~~~ CALCULATE IMAGE POSITION COORDINATES ~~~~~~~~~~~~~~~~~~~~
+
+  # coordinates are split into two arrays so they can be easily looked up in later iteration
+  # there are only two coordinates because this is a half page zine with two images per page
+  # more coordinates can be added here for smaller zines
+  # they start as percentages and are translated to pixels based on page size
+
+  xCoordinatesPercentages=(147 147) # representing 1.47% 1.47%
+  yCoordinatesPercentages=(114 5114) # representing 1.14% 51.14%
+
+  xCoordinatesPercentagesLength=${#xCoordinatesPercentages[@]}
+  yCoordinatesPercentagesLength=${#yCoordinatesPercentages[@]}
+
+  xCoordinatesPixels=()
+  yCoordinatesPixels=()
+
+  # calculate these percentages into pixels and add to coordinate arrays
+  # again bash cant do floating point numbers so percentages are calculated with integers
+  for ((i=0; i<$((xCoordinatesPercentagesLength)); i++)); do
+    pixelValue=$(((xCoordinatesPercentages[$i] * xPageSizePixels) / 10000))
+    xCoordinatesPixels+=($pixelValue)
+  done
+
+  for ((i=0; i<$((yCoordinatesPercentagesLength)); i++)); do
+    pixelValue=$(((yCoordinatesPercentages[$i] * yPageSizePixels) / 10000))
+    yCoordinatesPixels+=($pixelValue)
+  done
+
+
+
+
+  # ~~~~~~~~~~ ADD IMAGES TO PAGES ~~~~~~~~~~~~~~~~~~~~
+
+  # recollect new image names
+  zineImageFileNames=(./zine-images/*)
+
+  # place all zine images on pages in new order alternating positions
+  for ((i=0; i<$((zineImageCount)); i++)); do
+    zineImage=${zineImageFileNames[$((i))]}
+    xPosition=$((xCoordinatesPixels[$((i % xCoordinatesPercentagesLength))]))
+    yPosition=$((yCoordinatesPixels[$((i % yCoordinatesPercentagesLength))]))
+    pageNumber=$((((i) / 2) + 1)) # first page is zero since divide will always round down
+
+    magick composite -geometry +$((xPosition))+$((yPosition)) $zineImage ./zine-pages/$((pageNumber))-page.png ./zine-pages/$((pageNumber))-page.png
+  done
+
+
+
+
+  # ~~~~~~~~~~ STYLE PAGES ~~~~~~~~~~~~~~~~~~~~
+
+  # collect page file names and length then iterate through
+  pageFileNames=(./zine-pages/*)
+  pageFileCount=${#pageFileNames[@]}
+
+  for ((i=0; i<$((pageFileCount)); i++)); do
+    # grab page name and apply imagemagick styling
+    pageFileName=${pageFileNames[$((i))]}
+    convert $pageFileName -colorspace gray -ordered-dither o2x2 $pageFileName
+  done
+
+
+
+
+  # ~~~~~~~~~~ INCREASE PAGE RESOLUTION FOR PRINT ~~~~~~~~~~~~~~~~~~~~
+
+  # this is to help retain the pixel sharpness on lower resolution dithers etc
+  # the conversion to a jpeg is to help speed up printing
+
+  for ((i=0; i<$((pageFileCount)); i++)); do
+    pageFileName=${pageFileNames[$((i))]}
+
+    convert $pageFileName -filter point -resize 1700x2200 $pageFileName
+    magick $pageFileName ./zine-pages/$((i))-page.jpg
+    rm $pageFileName
+  done
+
+
+
+  # ~~~~~~~~~~ COMBINE INTO SINGLE PDF ~~~~~~~~~~~~~~~~~~~~
+  # add this later should be simple
 ```
 
 
