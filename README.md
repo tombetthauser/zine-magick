@@ -114,6 +114,8 @@ This is a bash script not image magick but it's useful for using image magick to
   done
 ```
 
+---
+
 # Make a Half-Page Vertical Zine 🐕
 
 All sizes in pixels, all rotations in degrees.
@@ -346,6 +348,8 @@ All sizes in pixels, all rotations in degrees.
   currentTime=`date -u +%s`
   magick convert ./zine-pages/* zine-${currentTime}.pdf
 ```
+
+---
 
 # Make a Quarter-Page Vertical Zine 🐈
 
