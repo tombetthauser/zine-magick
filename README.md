@@ -1,17 +1,22 @@
-# Tom's ImageMagick Scripts
+# Zine Magick Scripts
 
-A collection of imagemagick commands and scripts ***mainly for weird art projects and zines*** that I've found, modified and duct-taped together. In the grand tradition of [Fred's ImageMagick Scripts](http://www.fmwconcepts.com/imagemagick/index.php) which are awesome. For full ImageMagick installation instructions and documentation head over to the [official imagemagick docs](https://imagemagick.org/).
+A collection of imagemagick commands and scripts ***mainly for weird art projects and zines*** that I've duct-taped together. In the grand tradition of [Fred's ImageMagick Scripts](http://www.fmwconcepts.com/imagemagick/index.php) which are awesome. For full ImageMagick installation instructions and documentation head over to the [official imagemagick docs](https://imagemagick.org/).
 
 ![magick](https://bestanimations.com/Careers/Entertainment/Magic/magician-animation-10.gif)
 
+
+### Basic Scripts
 1. [Make a Blank Print File](#make-a-blank-print-file)
 2. [Rotate an Image](#rotate-an-image)
 3. [Resize an Image](#resize-an-image)
 4. [Crop or Contain an Image](#crop-or-contain-an-image)
 5. [Combining Images](#combining-images)
 6. [Get Images in Directory](#get-images-in-directory)
-7. [Make a Half-Page Vertical Zine](#make-a-half-page-vertical-zine)
-8. [Make a Quarter-Page Vertical Zine](#make-a-quarter-page-vertical-zine)
+
+
+### Zine-Building Scripts
+1. [Make a Half-Page Vertical Zine](#make-a-half-page-vertical-zine)
+2. [Make a Quarter-Page Vertical Zine](#make-a-quarter-page-vertical-zine)
 
 
 ---
