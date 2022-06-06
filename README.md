@@ -1,6 +1,6 @@
 # Zine Magick Scripts
 
-A collection of imagemagick commands and scripts I initially put together to help make zines with my two year old. In the grand tradition of [Fred's ImageMagick Scripts](http://www.fmwconcepts.com/imagemagick/index.php) which are awesome. For full ImageMagick installation instructions and documentation head over to the [official imagemagick docs](https://imagemagick.org/).
+A collection of imagemagick commands and scripts I initially put together to help make zines with my two year old who has shown very little interest in contributing to this repo. In the grand tradition of [Fred's ImageMagick Scripts](http://www.fmwconcepts.com/imagemagick/index.php) which are awesome. For full ImageMagick installation instructions and documentation head over to the [official imagemagick docs](https://imagemagick.org/).
 
 ![magick](https://bestanimations.com/Careers/Entertainment/Magic/magician-animation-10.gif)
 
