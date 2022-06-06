@@ -1,6 +1,6 @@
 # Zine Magick Scripts
 
-A collection of imagemagick commands and scripts ***mainly for weird art projects and zines*** that I've duct-taped together. In the grand tradition of [Fred's ImageMagick Scripts](http://www.fmwconcepts.com/imagemagick/index.php) which are awesome. For full ImageMagick installation instructions and documentation head over to the [official imagemagick docs](https://imagemagick.org/).
+A collection of imagemagick commands and scripts ***for zines and / or weird visual art projects*** that I've duct-taped together. In the grand tradition of [Fred's ImageMagick Scripts](http://www.fmwconcepts.com/imagemagick/index.php) which are awesome. For full ImageMagick installation instructions and documentation head over to the [official imagemagick docs](https://imagemagick.org/).
 
 ![magick](https://bestanimations.com/Careers/Entertainment/Magic/magician-animation-10.gif)
 
