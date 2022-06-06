@@ -21,6 +21,8 @@ A collection of imagemagick commands and scripts I initially put together to hel
 
 ---
 
+# The Basics
+
 ## Make a Blank Print File
 
 These are for making a starter 8.5 x 11 inch print file for a standard home printer that you can overlay other images onto. The argument given to the -size option are pixel counts and are set at fairly standard dimensions for good and excellent print resolution.
@@ -136,7 +138,7 @@ This is a bash script not image magick but it's useful for using image magick to
 This script will process a folder of images with mixed aspect ratios and resolutions into a printable zine pdf. The pages will print out in the proper order and with the proper rotations to be printed out on 8.5 x 11 inch paper on a standard home or office printer and bound with the simplest possible side-stapling approach. This means each individual sheet will be folded, then stacked side-by-side rather than clam-shelled / nested together, and then stapled along the binding with the zine closed. They can also be bound with a japanese / sewn binding approach. This also will result in no creeping edge and therefore will not require a stack cutter or manual trim.
 
 * vertical / portrait orientation
-* 4.25 x 5.5 inch zine
+* 8.5 x 5.5 inch zine
 * 8.5 x 11 inch print paper
 * home or office printer friendly
 * 64 pages max (32 sheets)
@@ -373,6 +375,14 @@ This script will process a folder of images with mixed aspect ratios and resolut
 ---
 
 # Make a Quarter-Page Vertical Zine
+
+This script will process a folder of images with mixed aspect ratios and resolutions into a printable zine pdf. The pages will print out in the proper order and with the proper rotations to be printed out on 8.5 x 11 inch paper on a standard home or office printer and bound with the simplest possible side-stapling approach. This means each individual sheet will be folded, then stacked side-by-side rather than clam-shelled / nested together, and then stapled along the binding with the zine closed. After binding minimal common-sense cuts will need to be made. Zines can also be bound with a japanese / sewn binding approach. Side-stapled zines will result in minimal creeping edges and therefore will not require a stack cutter or manual trim.
+
+* vertical / portrait orientation
+* 4.25 x 5.5 inch zine
+* 8.5 x 11 inch print paper
+* home or office printer friendly
+* 64 pages max (32 sheets)
 
 ```bash
   # ~~~~~~~~~~ GENERAL SETUP ~~~~~~~~~~~~~~~~~~~~
