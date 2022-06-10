@@ -4,6 +4,9 @@ A collection of imagemagick commands and scripts I initially put together to hel
 
 ![magick](https://bestanimations.com/Careers/Entertainment/Magic/magician-animation-10.gif)
 
+```
+⚠️ Warning: These scripts are definitely a work in progress!
+```
 
 ### Basic Scripts
 1. [Make a Blank Print File](#make-a-blank-print-file)
@@ -17,10 +20,6 @@ A collection of imagemagick commands and scripts I initially put together to hel
 ### Zine-Building Scripts
 1. [Make a Half-Page Vertical Zine](#make-a-half-page-vertical-zine)
 2. [Make a Quarter-Page Vertical Zine](#make-a-quarter-page-vertical-zine)
-
-```
-⚠️ These scripts are definitely a work in progress!
-```
 
 ---
 
