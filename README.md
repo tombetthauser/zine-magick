@@ -21,6 +21,8 @@ A collection of imagemagick commands and scripts I initially put together to hel
 ### Zine-Building Scripts
 1. [Make a Half-Page Vertical Zine](#make-a-half-page-vertical-zine)
 2. [Make a Quarter-Page Vertical Zine](#make-a-quarter-page-vertical-zine)
+3. [Make an Eighth-Page Vertical Zine](#make-an-eighth-page-vertical-zine)
+
 
 ---
 
