@@ -694,6 +694,10 @@ This script will process a folder of images with mixed aspect ratios and resolut
 
 To use the script make a folder called "zine-images-originals" and fill it with the images you want to turn into zine pages. Then paste the following into a bash script file, comment in / out the desired settings for size, style etc. and then run the script. Make sure to have [imagemagick](#zine-magick-scripts) properly installed!
 
+```
+⚠️ Warning: This one may still have some bugs!
+```
+
 * vertical / portrait orientation
 * 2.125 x 2.75 inch zine
 * 8.5 x 11 inch print paper
