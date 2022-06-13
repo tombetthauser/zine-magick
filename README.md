@@ -2,6 +2,8 @@
 
 A collection of imagemagick commands and scripts I initially put together to help make zines with my two year old who has shown very little interest in contributing to this repo. In the grand tradition of [Fred's ImageMagick Scripts](http://www.fmwconcepts.com/imagemagick/index.php) which are awesome. For full ImageMagick installation instructions and documentation head over to the [official imagemagick docs](https://imagemagick.org/).
 
+The larger zine-building scripts will process folders of images with mixed aspect ratios and resolutions into a printable zine pdfs. The pages will print out in the proper order and with the proper rotations to be printed out on 8.5 x 11 inch paper on a standard home or office printer and bound with the simplest possible side-stapling approach. This means each individual sheet will be folded, then stacked side-by-side rather than clam-shelled / nested together, and then stapled along the binding with the zine closed. They can also be bound with a japanese / sewn binding approach. This also will result in no creeping edge and therefore will not require a stack cutter or manual trim.
+
 ```
 ⚠️ Warning: These are definitely a work in progress!
 ```
@@ -151,7 +153,8 @@ This is a bash script not image magick but it's useful for using image magick to
 
 # Make a Half-Page Vertical Zine
 
-This script will process a folder of images with mixed aspect ratios and resolutions into a printable zine pdf. The pages will print out in the proper order and with the proper rotations to be printed out on 8.5 x 11 inch paper on a standard home or office printer and bound with the simplest possible side-stapling approach. This means each individual sheet will be folded, then stacked side-by-side rather than clam-shelled / nested together, and then stapled along the binding with the zine closed. They can also be bound with a japanese / sewn binding approach. This also will result in no creeping edge and therefore will not require a stack cutter or manual trim.
+This script builds probably the most standard zine layout, an 8.5 x 11 inch sheet of standard printer paper folded in half forming a vertically oriented 5.5 inch wide 8.5 inch tall booklet. As stated at 
+[the start of this readme](#zine-magick-scripts) this script assumes a side-staple or japanese sewn binding rather than a saddle bound with pages clam-sh
 
 To use the script make a folder called "zine-images-originals" and fill it with the images you want to turn into zine pages. Then paste the following into a bash script file, comment in / out the desired settings for size, style etc. and then run the script. Make sure to have [imagemagick](#zine-magick-scripts) properly installed!
 
