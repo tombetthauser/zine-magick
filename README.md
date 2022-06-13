@@ -24,6 +24,8 @@ A collection of imagemagick commands and scripts I initially put together to hel
 3. [Make an Eighth-Page Vertical Zine](#make-an-eighth-page-vertical-zine)
 
 
+
+
 ---
 
 # The Basics
@@ -138,6 +140,7 @@ This is a bash script not image magick but it's useful for using image magick to
 
 ---
 
+[[back to top]](#zine-magick-scripts)
 
 
 
@@ -387,6 +390,7 @@ This script will process a folder of images with mixed aspect ratios and resolut
 
 ---
 
+[[back to top]](#zine-magick-scripts)
 
 
 
@@ -666,6 +670,7 @@ This script will process a folder of images with mixed aspect ratios and resolut
 
 ---
 
+[[back to top]](#zine-magick-scripts)
 
 
 
