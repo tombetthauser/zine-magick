@@ -1,8 +1,10 @@
 # Zine Magick Scripts
 
-A collection of imagemagick commands and scripts I initially put together to help make zines with my two year old who has shown very little interest in contributing to this repo. In the grand tradition of [Fred's ImageMagick Scripts](http://www.fmwconcepts.com/imagemagick/index.php) which are awesome. For full ImageMagick installation instructions and documentation head over to the [official imagemagick docs](https://imagemagick.org/).
+Hi there! 👋 This is a collection of ImageMagick scripts I initially put together to help make quick printer-friendly zines with my two-year-old but it's slowly evolving into a web interfaced heroku project [(http://zine.garden)](http://zine.garden). Indirectly inspired by [Fred's ImageMagick Scripts](http://www.fmwconcepts.com/imagemagick/index.php) which are awesome and much more extensive than these. 
 
-The larger zine-building scripts will process folders of images with mixed aspect ratios and resolutions into a printable zine pdfs. The pages will print out in the proper order and with the proper rotations to be printed out on 8.5 x 11 inch paper on a standard home or office printer and bound with the simplest possible side-stapling approach. This means each individual sheet will be folded, then stacked side-by-side rather than clam-shelled / nested together, and then stapled along the binding with the zine closed. They can also be bound with a japanese / sewn binding approach. This also will result in no creeping edge and therefore will not require a stack cutter or manual trim.
+The larger zine-building scripts below will process folders of images with mixed aspect ratios and resolutions into a printable zine pdfs. The pages will print out in the proper order and with the proper rotations to be printed out on 8.5 x 11 inch paper on a standard home or office printer and bound with the simplest possible side-stapling approach. This means each individual sheet will be folded, then stacked side-by-side rather than clam-shelled / nested together, and then stapled along the binding with the zine closed. They can also be bound with a japanese / sewn binding approach. This also will result in no creeping edge and therefore will not require a stack cutter or manual trim.
+
+For full ImageMagick installation instructions and documentation head over to the [official ImageMagick docs](https://imagemagick.org/).
 
 ```
 ⚠️ Warning: These are definitely a work in progress!
