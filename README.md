@@ -1,6 +1,6 @@
 # Zine Magick Scripts
 
-Hi there! 👋 This is a collection of ImageMagick scripts I initially put together to help make quick printer-friendly zines with my two-year-old but it's slowly evolving into a web interfaced heroku project [(http://zine.garden)](http://zine.garden). Indirectly inspired by [Fred's ImageMagick Scripts](http://www.fmwconcepts.com/imagemagick/index.php) which are awesome and much more extensive than these. 
+Hi there! 👋 This is a collection of ImageMagick scripts I initially put together to help make quick printer-friendly zines with my two-year-old but it's slowly evolving into a [web interface / heroku project](https://www.zine.garden/). Indirectly inspired by [Fred's ImageMagick Scripts](http://www.fmwconcepts.com/imagemagick/index.php) which are awesome and much more extensive than these.
 
 The larger zine-building scripts below will process folders of images with mixed aspect ratios and resolutions into printable zine pdfs. The pages will print out in the proper order and with the proper rotations to be printed out on standard 8.5 x 11 inch paper through a home or office printer. Pagination is set up for the simplest possible side-staple binding. This means each individual sheet should be folded, then stacked side-by-side rather than clam-shelled / nested together, and then stapled along the binding with the zine closed.
 
