@@ -3,7 +3,7 @@
 # first we delete and recreate our zine images directory
 # we copy all of our original input images into this directory to manipulate
 rm -rf zine-images
-cp -r zine-images-originals zine-images
+cp -r ../demo-images zine-images
 
 # also delete the zine pages folder if it exists and remake it empty
 rm -rf zine-pages
@@ -72,7 +72,7 @@ done
 # the pattern here is tricky since it needs to be applied before reordering the images for page placement
 # this is best calculated manually with a physical mock-up of the zine size
 
-rotations=(270 270 90 90) # <--- set these manually for different zine layouts
+rotations=(270 90 90 270) # <--- set these manually for different zine layouts
 rotationsLength=${#rotations[@]}
 
 for ((i=0; i<$((zineImageCount)); i++)); do
@@ -223,6 +223,10 @@ done
 
 # ~~~~~~~~~~ COMBINE INTO SINGLE PDF ~~~~~~~~~~~~~~~~~~~~
 currentTime=`date -u +%s`
-magick convert ./zine-pages/* zine-${currentTime}.pdf
+rm zine-output.pdf
+magick convert ./zine-pages/* zine-output.pdf
+# magick convert ./zine-pages/* zine-${currentTime}.pdf
+# rm -rf zine-images
 
-open zine-${currentTime}.pdf
+# open zine-${currentTime}.pdf
+open zine-output.pdf
