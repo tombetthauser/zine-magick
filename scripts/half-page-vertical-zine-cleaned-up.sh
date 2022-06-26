@@ -60,15 +60,15 @@ invert=false
 # take optional styling arguments from command line 
 for arg in "$@"
 do
-  if [ $arg -eq resolution:* ]; then xPixelsTemp=(${arg//:/ }); pageWidth=${xPixelsTemp[1]}; pageHeight=${xPixelsTemp[2]}; fi
-  if [ $arg -eq white:* ]; then tempColor=(${arg//:/ }); replaceColorWhite=${tempColor[1]}; fi
-  if [ $arg -eq black:* ]; then blackReplacement=${tempColor#black:}; fi
-  if [ $arg -eq monochrome-dither:* ]; then monochromeDither=true; fi
-  if [ $arg -eq color-dither:* ]; then colorDither=true; fi
-  if [ $arg -eq trace-edges:* ]; then traceEdges=true; fi
-  if [ $arg -eq monochrome:* ]; then monochrome=true; fi
-  if [ $arg -eq posterize:* ]; then posterize=true; fi
-  if [ $arg -eq invert:* ]; then invert=true; fi
+  if [[ $arg = resolution:* ]]; then xPixelsTemp=(${arg//:/ }); pageWidth=${xPixelsTemp[1]}; pageHeight=${xPixelsTemp[2]}; fi
+  if [[ $arg = white:* ]]; then tempColor=(${arg//:/ }); replaceColorWhite=${tempColor[1]}; fi
+  if [[ $arg = black:* ]]; then blackReplacement=${tempColor#black:}; fi
+  if [[ $arg = monochrome-dither:* ]]; then monochromeDither=true; fi
+  if [[ $arg = color-dither:* ]]; then colorDither=true; fi
+  if [[ $arg = trace-edges:* ]]; then traceEdges=true; fi
+  if [[ $arg = monochrome:* ]]; then monochrome=true; fi
+  if [[ $arg = posterize:* ]]; then posterize=true; fi
+  if [[ $arg = invert:* ]]; then invert=true; fi # <--- why is [[ x = x ]] necessary instead of [[ x -eq x ]] or [ x -eq x ]
 done
 
 
