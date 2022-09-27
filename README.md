@@ -27,6 +27,8 @@ For full ImageMagick installation instructions and documentation head over to th
 2. [Make a Quarter-Page Vertical Zine](#make-a-quarter-page-vertical-zine)
 3. [Make an Eighth-Page Vertical Zine](#make-an-eighth-page-vertical-zine)
 
+```more sizes / orientations in the works!...```
+
 
 
 
